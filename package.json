@@ -1,6 +1,9 @@
 {
   "name": "iic3745-grupo3-proyecto-b",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.16.0",
     "@rails/actioncable": "^6.0.0",
