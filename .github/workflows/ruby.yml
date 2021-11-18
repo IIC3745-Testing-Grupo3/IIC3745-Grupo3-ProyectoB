@@ -13,7 +13,7 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: ${{ env.DB_USER }}
-          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}g
+          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
           POSTGRES_DB: IIC3745_Grupo3_ProyectoB_test
         ports:
           - 5432:5432
