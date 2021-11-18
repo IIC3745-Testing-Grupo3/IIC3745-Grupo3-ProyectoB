@@ -27,6 +27,8 @@ jobs:
         with:
           ruby-version: 3.0.0
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Run migrations
+        run: bundle exec rails db:migrate
       - name: Install modules
         run: yarn install
       - name: Run tests
