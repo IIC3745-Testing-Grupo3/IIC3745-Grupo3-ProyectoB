@@ -16,6 +16,7 @@ jobs:
         image: postgres:12.4
         ports: ['5432:5432']
         options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
@@ -27,9 +28,9 @@ jobs:
         with:
           ruby-version: 3.0.0
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Run migrations
-        run: bundle exec rails db:migrate
       - name: Install modules
         run: yarn install
+      - name: Create DB
+        run: bundle exec rails db:prepare
       - name: Run tests
         run: make tests
