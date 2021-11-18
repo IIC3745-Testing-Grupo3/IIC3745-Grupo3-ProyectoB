@@ -6,7 +6,6 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: postgresql://localhost/postgres
       DB_USER: postgres
       RAILS_ENV: test
     services:
