@@ -1,0 +1,17 @@
+name: jslinters
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/jslinters.yml'
+      - '**.jsx'
+      - '**.js'
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn install
+      - name: Run ESLint
+        run: make eslint
