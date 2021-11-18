@@ -12,7 +12,8 @@ jobs:
     services:
       postgres:
         env:
-          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           POSTGRES_DB: IIC3745_Grupo3_ProyectoB_test
         image: postgres:latest
         ports:
