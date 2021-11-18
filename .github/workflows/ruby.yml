@@ -9,12 +9,13 @@ jobs:
       DB_USER: postgres
       RAILS_ENV: test
     services:
-      db:
+      postgres:
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: IIC3745_Grupo3_ProyectoB_test
-        image: postgres:12.4
-        ports: ['5432:5432']
+        image: postgres:latest
+        ports:
+          - 5432:5432
         options: >-
           --mount type=tmpfs,destination=/var/lib/postgresql/data
           --health-cmd pg_isready
