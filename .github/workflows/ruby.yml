@@ -43,5 +43,7 @@ jobs:
         run: yarn install --prefer-offline
       - name: Create DB
         run: bundle exec rails db:prepare
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@latest
       - name: Run tests
         run: make tests
