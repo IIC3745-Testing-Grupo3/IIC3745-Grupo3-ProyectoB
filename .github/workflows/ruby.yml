@@ -41,6 +41,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install node packages
         run: yarn install --prefer-offline
+      - name: Install dependent libraries
+        run: sudo apt-get install libpq-dev
       - name: Create DB
         run: bundle exec rails db:prepare
       - name: Run tests
