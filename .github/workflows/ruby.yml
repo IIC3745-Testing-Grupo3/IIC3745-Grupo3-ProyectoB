@@ -42,6 +42,6 @@ jobs:
       - name: Install node packages
         run: yarn install --prefer-offline
       - name: Setup db
-        run: bundle exec rails db:migrate
+        run: RAILS_ENV=test bundle exec rails db:migrate
       - name: Run tests
         run: make tests
