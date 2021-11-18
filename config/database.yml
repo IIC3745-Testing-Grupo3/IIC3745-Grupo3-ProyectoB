@@ -12,6 +12,8 @@ development:
 test:
   <<: *default
   database: IIC3745_Grupo3_ProyectoB_test
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
 
 production:
   <<: *default
