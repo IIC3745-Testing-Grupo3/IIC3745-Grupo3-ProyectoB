@@ -9,5 +9,5 @@ export default function Pages() {
         <Route path="/" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
