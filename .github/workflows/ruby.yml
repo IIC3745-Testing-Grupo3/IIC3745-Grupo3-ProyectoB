@@ -1,4 +1,4 @@
-name: capybara
+name: ruby
 on: [pull_request]
 jobs:
   tests:
