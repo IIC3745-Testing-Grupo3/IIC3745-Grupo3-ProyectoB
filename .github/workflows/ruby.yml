@@ -22,7 +22,7 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
+      - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.0
