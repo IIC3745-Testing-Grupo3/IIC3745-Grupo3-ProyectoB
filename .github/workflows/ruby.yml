@@ -1,0 +1,34 @@
+name: capybara
+on: [pull_request]
+jobs:
+  tests:
+    name: tests
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://localhost/postgres
+      DB_USER: postgres
+      RAILS_ENV: test
+    services:
+      db:
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: IIC3745_Grupo3_ProyectoB_test
+        image: postgres:12.4
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Install modules
+        run: yarn install
+      - name: Run tests
+        run: make tests
