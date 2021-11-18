@@ -10,7 +10,7 @@
 
 - Ruby 3.0.0
 - PostgreSQL
-- Node
+- Node 14.x
 - Yarn
 
 ## Setup
