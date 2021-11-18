@@ -1,3 +1,7 @@
+.PHONY: tests
+tests:
+	bundle exec rspec
+
 .PHONY: eslint
 eslint:
 	yarn eslint --ext .js,.jsx app
