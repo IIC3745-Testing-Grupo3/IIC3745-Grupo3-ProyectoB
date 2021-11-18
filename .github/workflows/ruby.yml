@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install node packages
         run: yarn install --prefer-offline
-      - name: Create DB
-        run: bundle exec rails db:prepare
+      - name: Setup db
+        run: bundle exec rails db:migrate
       - name: Run tests
         run: make tests
