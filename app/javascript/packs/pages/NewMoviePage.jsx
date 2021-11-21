@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
+import NewMovieConfirmation from '../components/movies/NewMovieConfirmation';
 import NewMovieForm from '../components/movies/NewMovieForm';
 import NewMovieScreenings from '../components/movies/NewMovieScreenings';
 import NewMovieSteps from '../components/movies/NewMovieSteps';
@@ -25,6 +26,7 @@ export default function NewMoviePage() {
       </Box>
       {currentStep === 0 && <NewMovieForm />}
       {currentStep === 1 && <NewMovieScreenings />}
+      {currentStep === 2 && <NewMovieConfirmation />}
     </>
   );
 }

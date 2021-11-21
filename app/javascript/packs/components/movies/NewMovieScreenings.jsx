@@ -51,7 +51,9 @@ export default function NewMovieScreenings() {
       >
         Volver
       </Button>
-      <Button variant="contained">Siguiente</Button>
+      <Button variant="contained" onClick={() => dispatch(setNewMovieStep(2))}>
+        Siguiente
+      </Button>
     </>
   );
 }
