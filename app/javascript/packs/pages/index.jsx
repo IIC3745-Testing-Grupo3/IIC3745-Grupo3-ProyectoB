@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '@mui/material/Container';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import NewMoviePage from './NewMoviePage';
@@ -8,10 +9,12 @@ export default function Pages() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies/new" element={<NewMoviePage />} />
-      </Routes>
+      <Container sx={{ my: 4 }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies/new" element={<NewMoviePage />} />
+        </Routes>
+      </Container>
     </BrowserRouter>
   );
 }
