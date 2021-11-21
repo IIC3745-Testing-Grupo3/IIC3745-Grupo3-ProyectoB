@@ -24,10 +24,15 @@ export const moviesSlice = createSlice({
       const { schedule, rooms } = action.payload;
       state.newMovieScreenings[schedule] = rooms;
     },
+    resetState: (state) => {
+      state.newMovieData = initialState.newMovieData;
+      state.newMovieScreenings = initialState.newMovieScreenings;
+      state.newMovieStep = initialState.newMovieStep;
+    },
   },
 });
 
-export const { setNewMovieData, setNewMovieStep, setScreening } =
+export const { setNewMovieData, setNewMovieStep, setScreening, resetState } =
   moviesSlice.actions;
 
 export default moviesSlice.reducer;
