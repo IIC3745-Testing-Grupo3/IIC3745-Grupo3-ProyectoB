@@ -4,7 +4,10 @@ import TextField from '@mui/material/TextField';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import { setNewMovieData } from '../../store/modules/movies/slice';
+import {
+  setNewMovieData,
+  setNewMovieStep,
+} from '../../store/modules/movies/slice';
 
 const yesterday = new Date(Date.now() - 86400000);
 
@@ -35,7 +38,10 @@ export default function NewMovieForm() {
     <Formik
       initialValues={{ name: '', startDate: '', endDate: '', poster: '' }}
       validationSchema={validationSchema}
-      onSubmit={(data) => dispatch(setNewMovieData(data))}
+      onSubmit={(data) => {
+        dispatch(setNewMovieData(data));
+        dispatch(setNewMovieStep(1));
+      }}
     >
       {({ errors, touched, values, handleChange, handleBlur }) => (
         <Form>
@@ -51,7 +57,7 @@ export default function NewMovieForm() {
             style={{ width: '100%' }}
             helperText={errors.name && touched.name ? errors.name : ''}
             error={errors.name && touched.name}
-            margin="dense"
+            sx={{ my: 2 }}
           />
           <TextField
             name="startDate"
@@ -67,8 +73,8 @@ export default function NewMovieForm() {
               errors.startDate && touched.startDate ? errors.startDate : ''
             }
             error={errors.startDate && touched.startDate}
-            margin="dense"
             InputLabelProps={{ shrink: true }}
+            sx={{ my: 2 }}
           />
           <TextField
             name="endDate"
@@ -82,8 +88,8 @@ export default function NewMovieForm() {
             style={{ width: '100%' }}
             helperText={errors.endDate && touched.endDate ? errors.endDate : ''}
             error={errors.endDate && touched.endDate}
-            margin="dense"
             InputLabelProps={{ shrink: true }}
+            sx={{ my: 2 }}
           />
           <TextField
             name="poster"
@@ -96,7 +102,7 @@ export default function NewMovieForm() {
             style={{ width: '100%' }}
             helperText={errors.poster && touched.poster ? errors.poster : ''}
             error={errors.poster && touched.poster}
-            margin="dense"
+            sx={{ my: 2 }}
           />
           <Button variant="contained" type="submit">
             Siguiente
