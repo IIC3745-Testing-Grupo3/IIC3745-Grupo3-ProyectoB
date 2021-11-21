@@ -29,10 +29,18 @@ export const moviesSlice = createSlice({
       state.newMovieScreenings = initialState.newMovieScreenings;
       state.newMovieStep = initialState.newMovieStep;
     },
+    resetScreenings: (state) => {
+      state.newMovieScreenings = initialState.newMovieScreenings;
+    },
   },
 });
 
-export const { setNewMovieData, setNewMovieStep, setScreening, resetState } =
-  moviesSlice.actions;
+export const {
+  setNewMovieData,
+  setNewMovieStep,
+  setScreening,
+  resetState,
+  resetScreenings,
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;

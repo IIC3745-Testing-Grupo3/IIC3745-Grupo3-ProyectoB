@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import {
   setNewMovieData,
   setNewMovieStep,
+  resetScreenings,
 } from '../../../store/modules/movies/slice';
 
 const yesterday = new Date(Date.now() - 86400000);
@@ -48,6 +49,7 @@ export default function NewMovieForm() {
       validationSchema={validationSchema}
       onSubmit={(data) => {
         dispatch(setNewMovieData(data));
+        dispatch(resetScreenings());
         dispatch(setNewMovieStep(1));
       }}
     >

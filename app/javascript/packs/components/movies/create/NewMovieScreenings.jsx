@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -18,12 +18,6 @@ export default function NewMovieScreenings() {
   const newMovieScreenings = useSelector(
     (state) => state.movies.newMovieScreenings,
   );
-
-  useEffect(() => {
-    schedules.forEach((schedule) => {
-      dispatch(setScreening({ schedule, rooms: [] }));
-    });
-  }, []);
 
   return (
     <>
