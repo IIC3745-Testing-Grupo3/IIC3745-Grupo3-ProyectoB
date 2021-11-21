@@ -6,7 +6,7 @@ const moviesApi = baseApi.injectEndpoints({
       query: (body) => ({
         url: '/movies',
         method: 'POST',
-        body,
+        body: { movie: body },
       }),
     }),
   }),
