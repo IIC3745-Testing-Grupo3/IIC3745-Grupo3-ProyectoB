@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Formik, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import {
   setNewMovieData,
@@ -33,10 +33,16 @@ const validationSchema = Yup.object().shape({
 
 export default function NewMovieForm() {
   const dispatch = useDispatch();
+  const newMovieData = useSelector((state) => state.movies.newMovieData);
 
   return (
     <Formik
-      initialValues={{ name: '', startDate: '', endDate: '', poster: '' }}
+      initialValues={{
+        name: newMovieData?.name || '',
+        startDate: newMovieData?.startDate || '',
+        endDate: newMovieData?.endDate || '',
+        poster: newMovieData?.poster || '',
+      }}
       validationSchema={validationSchema}
       onSubmit={(data) => {
         dispatch(setNewMovieData(data));
