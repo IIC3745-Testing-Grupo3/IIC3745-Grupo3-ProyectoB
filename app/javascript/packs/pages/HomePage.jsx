@@ -5,8 +5,11 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <Container sx={{ pt: 4 }}>
       <Grid container justifyContent="space-between" alignItems="flex-end">
@@ -14,7 +17,11 @@ export default function HomePage() {
           <Typography variant="h4">Películas</Typography>
         </Grid>
         <Grid item>
-          <Button variant="contained" endIcon={<Add />}>
+          <Button
+            variant="contained"
+            endIcon={<Add />}
+            onClick={() => navigate('/movies/new')}
+          >
             Agregar película
           </Button>
         </Grid>
