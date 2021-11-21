@@ -8,12 +8,12 @@ export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    setNewMovie: (state, payload) => {
-      state.newMovieData = payload;
+    setNewMovieData: (state, action) => {
+      state.newMovieData = action.payload;
     },
   },
 });
 
-export const { setNewMovie } = moviesSlice.actions;
+export const { setNewMovieData } = moviesSlice.actions;
 
 export default moviesSlice.reducer;
