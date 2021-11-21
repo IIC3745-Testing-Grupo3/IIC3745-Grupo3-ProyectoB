@@ -5,10 +5,10 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import NewMovieConfirmation from '../components/movies/NewMovieConfirmation';
-import NewMovieForm from '../components/movies/NewMovieForm';
-import NewMovieScreenings from '../components/movies/NewMovieScreenings';
-import NewMovieSteps from '../components/movies/NewMovieSteps';
+import NewMovieConfirmation from '../components/movies/create/NewMovieConfirmation';
+import NewMovieForm from '../components/movies/create/NewMovieForm';
+import NewMovieScreenings from '../components/movies/create/NewMovieScreenings';
+import NewMovieSteps from '../components/movies/create/NewMovieSteps';
 
 export default function NewMoviePage() {
   const currentStep = useSelector((state) => state.movies.newMovieStep);

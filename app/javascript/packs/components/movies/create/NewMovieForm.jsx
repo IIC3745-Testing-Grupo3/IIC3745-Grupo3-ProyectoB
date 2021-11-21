@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import {
   setNewMovieData,
   setNewMovieStep,
-} from '../../store/modules/movies/slice';
+} from '../../../store/modules/movies/slice';
 
 const yesterday = new Date(Date.now() - 86400000);
 

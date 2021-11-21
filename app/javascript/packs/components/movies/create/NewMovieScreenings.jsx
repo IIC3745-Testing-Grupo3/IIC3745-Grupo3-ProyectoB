@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setNewMovieStep,
   setScreening,
-} from '../../store/modules/movies/slice';
+} from '../../../store/modules/movies/slice';
 
 const schedules = ['Matiné', 'Tanda', 'Noche'];
 const availableRooms = [1, 2, 3, 4, 5, 6, 7, 8];

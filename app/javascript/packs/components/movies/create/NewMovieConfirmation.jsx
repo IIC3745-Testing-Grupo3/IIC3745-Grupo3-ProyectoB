@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import Loading from '../ui/Loading';
-import { setNewMovieStep } from '../../store/modules/movies/slice';
-import { useCreateMovieMutation } from '../../api/moviesApi';
+import Loading from '../../ui/Loading';
+import { setNewMovieStep } from '../../../store/modules/movies/slice';
+import { useCreateMovieMutation } from '../../../api/moviesApi';
 
 export default function NewMovieConfirmation() {
   const dispatch = useDispatch();
