@@ -28,7 +28,9 @@ const validationSchema = Yup.object().shape({
           'La fecha de termino no puede ser menor a la fecha de inicio',
         ),
     ),
-  poster: Yup.string().required('Requerido'),
+  poster: Yup.string()
+    .url('El poster debe ser una URL válida')
+    .required('Requerido'),
 });
 
 export default function NewMovieForm() {
