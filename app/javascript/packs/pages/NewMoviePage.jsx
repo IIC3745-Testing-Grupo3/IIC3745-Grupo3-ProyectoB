@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 import NewMovieForm from '../components/movies/NewMovieForm';
+import NewMovieScreenings from '../components/movies/NewMovieScreenings';
 import NewMovieSteps from '../components/movies/NewMovieSteps';
 
 export default function NewMoviePage() {
@@ -14,6 +15,7 @@ export default function NewMoviePage() {
         <NewMovieSteps />
       </Box>
       {currentStep === 0 && <NewMovieForm />}
+      {currentStep === 1 && <NewMovieScreenings />}
     </>
   );
 }

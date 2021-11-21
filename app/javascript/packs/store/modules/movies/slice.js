@@ -2,6 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   newMovieData: null,
+  newMovieScreenings: {
+    Matiné: [],
+    Tanda: [],
+    Noche: [],
+  },
   newMovieStep: 0,
 };
 
@@ -15,9 +20,14 @@ export const moviesSlice = createSlice({
     setNewMovieStep: (state, action) => {
       state.newMovieStep = action.payload;
     },
+    setScreening: (state, action) => {
+      const { schedule, rooms } = action.payload;
+      state.newMovieScreenings[schedule] = rooms;
+    },
   },
 });
 
-export const { setNewMovieData, setNewMovieStep } = moviesSlice.actions;
+export const { setNewMovieData, setNewMovieStep, setScreening } =
+  moviesSlice.actions;
 
 export default moviesSlice.reducer;
