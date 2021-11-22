@@ -21,5 +21,6 @@ module.exports = {
       2,
       { namedComponents: 'function-declaration' },
     ],
+    'no-param-reassign': 'off',
   },
 };
