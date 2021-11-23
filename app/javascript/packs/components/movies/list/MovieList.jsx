@@ -4,7 +4,7 @@ import MovieListItem from './MovieListItem';
 import Loading from '../../ui/Loading';
 import { useGetMoviesQuery } from '../../../api/moviesApi';
 
-export default function BoxComponent() {
+export default function MovieList() {
   const { data, isLoading } = useGetMoviesQuery();
   if (isLoading) {
     return <Loading />;
