@@ -9,22 +9,15 @@ import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 import MovieScreeningItem from './MovieScreeningItem';
 
-export default function MovieListItem({ movie }) {
+export default function MovieListItem({ poster, name, screenings }) {
   return (
     <Card sx={{ width: 1 }}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={movie.poster}
-        alt={movie.name}
-      />
+      <CardMedia component="img" height="200" image={poster} alt={name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {movie.name}
+          {name}
         </Typography>
-        <MovieScreeningItem
-          screenings={_.groupBy(movie.screenings, 'schedule')}
-        />
+        <MovieScreeningItem screenings={_.groupBy(screenings, 'schedule')} />
       </CardContent>
       <CardActions>
         <Button size="small">Reservar Entradas</Button>
@@ -34,9 +27,7 @@ export default function MovieListItem({ movie }) {
 }
 
 MovieListItem.propTypes = {
-  movie: PropTypes.shape({
-    name: PropTypes.string,
-    poster: PropTypes.string,
-    screenings: PropTypes.arrayOf(PropTypes.object),
-  }).isRequired,
+  name: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  screenings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
