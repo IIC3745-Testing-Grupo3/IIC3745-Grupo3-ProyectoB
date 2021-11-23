@@ -11,13 +11,9 @@ export default function MovieList() {
   }
   return (
     <Grid container spacing={2} justifyContent="center">
-      {data.map((movie) => (
-        <Grid item key={movie.id} lg={3} md={6} xs={12}>
-          <MovieListItem
-            poster={movie.poster}
-            name={movie.name}
-            screenings={movie.screenings}
-          />
+      {data.map(({ id, poster, name, screenings }) => (
+        <Grid item key={id} lg={3} md={6} xs={12}>
+          <MovieListItem poster={poster} name={name} screenings={screenings} />
         </Grid>
       ))}
     </Grid>
