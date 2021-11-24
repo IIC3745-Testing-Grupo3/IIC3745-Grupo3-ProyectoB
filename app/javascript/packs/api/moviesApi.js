@@ -9,9 +9,11 @@ const moviesApi = baseApi.injectEndpoints({
         body: { movie: body },
       }),
     }),
+    getMovies: build.query({
+      query: () => '/movies',
+    }),
   }),
   overrideExisting: false,
 });
 
-// eslint-disable-next-line import/prefer-default-export
-export const { useCreateMovieMutation } = moviesApi;
+export const { useCreateMovieMutation, useGetMoviesQuery } = moviesApi;

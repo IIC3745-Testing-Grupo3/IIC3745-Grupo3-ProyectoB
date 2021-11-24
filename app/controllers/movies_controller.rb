@@ -5,6 +5,11 @@ class MoviesController < ApplicationController
     render json: { **movie.as_json, screenings: movie.screenings.as_json }
   end
 
+  def index
+    movies = Movie.includes(:screenings)
+    render json: movies, :include => :screenings
+  end
+
   private
 
   def movie_params

@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
+import MovieList from '../components/movies/list/MovieList';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function HomePage() {
         </Grid>
       </Grid>
       <Divider sx={{ my: 2 }} />
+      <MovieList />
     </>
   );
 }
