@@ -1,4 +1,4 @@
-class MoviesController < ApplicationController
+class Api::MoviesController < ApplicationController
   def create
     movie = Movie.create(movie_params.slice(:name, :start_date, :end_date, :poster))
     movie.screenings << movie_params[:screenings].map { |screening| Screening.new(screening) }
