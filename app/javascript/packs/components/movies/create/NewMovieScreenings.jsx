@@ -5,19 +5,29 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../ui/Loading';
 import {
   setNewMovieStep,
   setScreening,
 } from '../../../store/modules/movies/slice';
+import { useGetOccupiedRoomsQuery } from '../../../api/screeningsApi';
 
 const schedules = ['Matiné', 'Tanda', 'Noche'];
 const availableRooms = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function NewMovieScreenings() {
   const dispatch = useDispatch();
-  const newMovieScreenings = useSelector(
-    (state) => state.movies.newMovieScreenings,
+  const { newMovieData, newMovieScreenings } = useSelector(
+    (state) => state.movies,
   );
+  const { data, isLoading } = useGetOccupiedRoomsQuery({
+    startDate: newMovieData.startDate,
+    endDate: newMovieData.endDate,
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -30,11 +40,13 @@ export default function NewMovieScreenings() {
               dispatch(setScreening({ schedule, rooms }))
             }
           >
-            {availableRooms.map((room) => (
-              <ToggleButton key={room} value={room}>
-                {`Sala ${room}`}
-              </ToggleButton>
-            ))}
+            {availableRooms
+              .filter((room) => !data[schedule].includes(room))
+              .map((room) => (
+                <ToggleButton key={room} value={room}>
+                  {`Sala ${room}`}
+                </ToggleButton>
+              ))}
           </ToggleButtonGroup>
         </Box>
       ))}
