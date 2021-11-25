@@ -6,10 +6,10 @@ import Add from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import MovieList from '../components/movies/list/MovieList';
+import MovieDateFilter from '../components/movies/filter/MovieDateFilter';
 
 export default function HomePage() {
   const navigate = useNavigate();
-
   return (
     <>
       <Grid container justifyContent="space-between" alignItems="flex-end">
@@ -26,6 +26,7 @@ export default function HomePage() {
           </Button>
         </Grid>
       </Grid>
+      <MovieDateFilter />
       <Divider sx={{ my: 2 }} />
       <MovieList />
     </>
