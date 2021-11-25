@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import NewMoviePage from './NewMoviePage';
+import NotFoundPage from './NotFoundPage';
 import Navbar from '../components/layout/Navbar';
 
 export default function Pages() {
@@ -13,6 +14,7 @@ export default function Pages() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/new" element={<NewMoviePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Container>
     </BrowserRouter>
