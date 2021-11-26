@@ -7,9 +7,7 @@ import { useGetMoviesQuery } from '../../../api/moviesApi';
 
 export default function MovieList() {
   const { filterDate } = useSelector((state) => state.movies);
-  const { data, isLoading } = filterDate
-    ? useGetMoviesQuery(filterDate)
-    : useGetMoviesQuery();
+  const { data, isLoading } = useGetMoviesQuery(filterDate);
   if (isLoading) {
     return <Loading />;
   }
