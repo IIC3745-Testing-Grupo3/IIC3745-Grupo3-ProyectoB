@@ -8,7 +8,7 @@ const initialState = {
     Noche: [],
   },
   newMovieStep: 0,
-  filterDate: undefined,
+  filterDate: '',
 };
 
 export const moviesSlice = createSlice({
