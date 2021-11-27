@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_11_26_040954) do
   create_table "bookings", force: :cascade do |t|
     t.text "booker"
     t.datetime "date"
-    t.integer "row"
+    t.string "row"
     t.integer "column"
     t.bigint "screening_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -1,31 +1,38 @@
 class Api::BookingsController < ApplicationController
   def create
-    screening = Screening.includes(:bookings).find(params[:screening_id])
-    data = booking_params.slice(:booker, :date, :row, :column)
+    screening = Screening.find(params[:screening_id])
     # Validate date
-    if not DateTime.parse(data["date"]).between?(
+    if not DateTime.parse(params[:date]).between?(
       screening.movie.start_date, screening.movie.end_date
     )
       body = {:status => 400, :error => "Invalid date"}
-      render :json => body.to_json, :status => :bad_request
+      render :json => body, :status => :bad_request
       return
     end
     # No seat repeated
-    screening.bookings.each do |booker|
-      if booker.row == data["row"] \
-        && booker.column == data["column"] \
-        && booker.date == DateTime.parse(data["date"])
-        body = {:status => 400, :error => "Seat already taken"}
-        render :json => body.to_json, :status => :bad_request
-        return
-      end
+    booking = Booking.find_by(
+      screening: screening, row: params[:row], column: params[:column],
+      date: DateTime.parse(params[:date])
+    )
+    puts booking
+    if booking
+      body = {:status => 400, :error => "Seat already taken"}
+      return render :json => body, :status => :bad_request
     end
-    booking = screening.bookings.create(data)
+    booking = screening.bookings.create(booking_params)
     render json: booking
   end
 
   def index
-    bookings = Booking.where(screening_id: params[:screening_id]).all
+    date = DateTime.parse request.query_parameters["date"] rescue nil
+    if not date
+      body = {:status => 400, :error => "invalid or missing date"}
+      return render :json => body, :status => :bad_request
+    end
+    bookings = Booking.where(
+      screening_id: params[:screening_id],
+      date: DateTime.parse(request.query_parameters["date"])
+    ).all
     render json: bookings
   end
 

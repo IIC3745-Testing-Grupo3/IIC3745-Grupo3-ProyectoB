@@ -3,7 +3,7 @@ class CreateBookings < ActiveRecord::Migration[6.1]
     create_table :bookings do |t|
       t.text :booker
       t.datetime :date
-      t.integer :row
+      t.string :row
       t.integer :column
       t.references :screening, null: false, foreign_key: true
 
