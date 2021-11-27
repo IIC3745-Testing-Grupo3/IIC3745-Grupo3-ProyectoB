@@ -6,15 +6,13 @@ class Api::BookingsController < ApplicationController
       screening.movie.start_date, screening.movie.end_date
     )
       body = {:status => 400, :error => "Invalid date"}
-      render :json => body, :status => :bad_request
-      return
+      return render :json => body, :status => :bad_request
     end
     # No seat repeated
     booking = Booking.find_by(
       screening: screening, row: params[:row], column: params[:column],
       date: DateTime.parse(params[:date])
     )
-    puts booking
     if booking
       body = {:status => 400, :error => "Seat already taken"}
       return render :json => body, :status => :bad_request
