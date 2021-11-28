@@ -8,12 +8,16 @@ const initialState = {
     Noche: [],
   },
   newMovieStep: 0,
+  filterDate: '',
 };
 
 export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    setFilterDate: (state, action) => {
+      state.filterDate = action.payload;
+    },
     setNewMovieData: (state, action) => {
       state.newMovieData = action.payload;
     },
@@ -36,6 +40,7 @@ export const moviesSlice = createSlice({
 });
 
 export const {
+  setFilterDate,
   setNewMovieData,
   setNewMovieStep,
   setScreening,

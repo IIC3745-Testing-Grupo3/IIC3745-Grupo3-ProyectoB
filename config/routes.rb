@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :movies, only: [:create, :index]
+    resources :movies, only: [:create, :index], shallow: true do
+      resources :screenings, only: [:index], shallow: true do
+        resources :bookings, only: [:create, :index]
+      end
+    end
     get '/screenings/occupied', to: 'screenings#occupied'
   end
 

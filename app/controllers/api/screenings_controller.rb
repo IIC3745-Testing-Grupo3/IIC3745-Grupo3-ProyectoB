@@ -14,4 +14,9 @@ class Api::ScreeningsController < ApplicationController
     }
     render json: occupied_rooms
   end
+
+  def index
+    screenings = Screening.where(movie_id: params[:movie_id]).all
+    render json: screenings
+  end
 end

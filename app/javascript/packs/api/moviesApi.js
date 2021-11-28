@@ -10,7 +10,12 @@ const moviesApi = baseApi.injectEndpoints({
       }),
     }),
     getMovies: build.query({
-      query: () => '/movies',
+      query: (date) => ({
+        url: '/movies',
+        params: {
+          date,
+        },
+      }),
     }),
   }),
   overrideExisting: false,

@@ -1,11 +1,15 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
+import { useSelector } from 'react-redux';
 import MovieListItem from './MovieListItem';
 import Loading from '../../ui/Loading';
 import { useGetMoviesQuery } from '../../../api/moviesApi';
 
 export default function MovieList() {
-  const { data, isLoading } = useGetMoviesQuery();
+  const { filterDate } = useSelector((state) => state.movies);
+  const { data, isLoading } = filterDate
+    ? useGetMoviesQuery(filterDate)
+    : useGetMoviesQuery();
   if (isLoading) {
     return <Loading />;
   }

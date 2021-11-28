@@ -6,8 +6,15 @@ class Api::MoviesController < ApplicationController
   end
 
   def index
-    movies = Movie.includes(:screenings)
-    render json: movies, :include => :screenings
+    if (params[:date])
+      movies = Movie.includes(:screenings).where(
+        "start_date <= '#{params[:date]}' and end_date >= '#{params[:date]}'"
+      )
+      render json: movies, :include => :screenings
+    else 
+      movies = Movie.includes(:screenings)
+      render json: movies, :include => :screenings
+    end
   end
 
   private
