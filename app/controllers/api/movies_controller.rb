@@ -17,6 +17,11 @@ class Api::MoviesController < ApplicationController
     end
   end
 
+  def show
+    movie = Movie.includes(:screenings).find_by(id: params[:id])
+    render json: movie, :include => :screenings
+  end
+
   private
 
   def movie_params
