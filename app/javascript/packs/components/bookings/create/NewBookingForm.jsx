@@ -14,6 +14,7 @@ import {
 export default function NewBookingForm({ startDate, endDate, screenings }) {
   const dispatch = useDispatch();
   const newBookingData = useSelector((state) => state.bookings.newBookingData);
+  console.log(newBookingData);
   const validationSchema = Yup.object().shape({
     date: Yup.date()
       .required('Requerido')

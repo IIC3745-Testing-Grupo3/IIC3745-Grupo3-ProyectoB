@@ -1,26 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import RoomPassage from '../components/room/RoomPassage';
-import RoomScreen from '../components/room/RoomScreen';
+import { useDispatch, useSelector } from 'react-redux';
+import RoomPassage from '../room/RoomPassage';
+import RoomScreen from '../room/RoomScreen';
+import {
+  setNewBookingStep,
+  setSelectedRow,
+  setSelectedSpots,
+  resetSpots,
+} from '../../../store/modules/bookings/slice';
 
 const rowNames = ['A', 'B', 'C', 'D'];
 
-const columns = Array.from({ length: 12 }, (_, i) => i + 1); // Cambiar
+const columns = Array.from({ length: 12 }, (_, i) => i + 1);
 
-export default function RoomPage() {
-  const [selectedSpots, setSelectedSpots] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null);
+export default function NewBookingRoom() {
+  const { selectedSpots, selectedRow } = useSelector(
+    (state) => state.bookings.roomData,
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedSpots.length) {
-      setSelectedRow(selectedSpots[0].row);
+      dispatch(setSelectedRow(selectedSpots[0].row));
     } else {
-      setSelectedRow(null);
+      dispatch(setSelectedRow(null));
     }
   }, [selectedSpots]);
+
+  useEffect(() => {
+    dispatch(resetSpots());
+  }, []);
 
   const rowAvailable = (row) => {
     return selectedRow ? row === selectedRow : true;
@@ -34,13 +49,15 @@ export default function RoomPage() {
 
   const addSpot = (row, column) => {
     if (isSelected(row, column)) {
-      setSelectedSpots(
-        selectedSpots.filter(
-          (spot) => spot.row !== row || spot.column !== column,
+      dispatch(
+        setSelectedSpots(
+          selectedSpots.filter(
+            (spot) => spot.row !== row || spot.column !== column,
+          ),
         ),
       );
     } else {
-      setSelectedSpots([...selectedSpots, { row, column }]);
+      dispatch(setSelectedSpots([...selectedSpots, { row, column }]));
     }
   };
 
@@ -98,6 +115,22 @@ export default function RoomPage() {
           <RoomScreen />
         </Grid>
         <RoomPassage position="right" />
+      </Box>
+      <Box sx={{ mt: 3 }}>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(setNewBookingStep(0))}
+          sx={{ mr: 2 }}
+        >
+          Volver
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => dispatch(setNewBookingStep(2))}
+          disabled={!selectedRow}
+        >
+          Siguiente
+        </Button>
       </Box>
     </Box>
   );

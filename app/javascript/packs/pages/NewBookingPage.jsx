@@ -9,6 +9,7 @@ import { useGetMovieByIdQuery } from '../api/moviesApi';
 import Loading from '../components/ui/Loading';
 // import NewMovieConfirmation from '../components/movies/create/NewMovieConfirmation';
 import NewBookingForm from '../components/bookings/create/NewBookingForm';
+import NewBookingRoom from '../components/bookings/create/NewBookingRoom';
 // import NewMovieScreenings from '../components/movies/create/NewMovieScreenings';
 import NewBookingSteps from '../components/bookings/create/NewBookingSteps';
 import { resetState } from '../store/modules/bookings/slice';
@@ -46,9 +47,7 @@ export default function NewBookingPage() {
           screenings={data.screenings}
         />
       )}
-      {currentStep === 1 && (
-        <Typography variant="h4">XD {data.name}</Typography>
-      )}
+      {currentStep === 1 && <NewBookingRoom />}
       {/* {currentStep === 2 && <NewMovieConfirmation />} */}
     </>
   );
