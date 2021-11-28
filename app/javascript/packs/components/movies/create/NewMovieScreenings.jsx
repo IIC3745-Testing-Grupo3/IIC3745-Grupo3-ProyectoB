@@ -20,6 +20,11 @@ export default function NewMovieScreenings() {
   const { newMovieData, newMovieScreenings } = useSelector(
     (state) => state.movies,
   );
+
+  const isScreeningSelected = ({ Matiné, Tanda, Noche }) => {
+    return [...Matiné, ...Tanda, ...Noche].length;
+  };
+
   const { data, isLoading } = useGetOccupiedRoomsQuery({
     startDate: newMovieData.startDate,
     endDate: newMovieData.endDate,
@@ -57,7 +62,11 @@ export default function NewMovieScreenings() {
       >
         Volver
       </Button>
-      <Button variant="contained" onClick={() => dispatch(setNewMovieStep(2))}>
+      <Button
+        variant="contained"
+        disabled={!isScreeningSelected(newMovieScreenings)}
+        onClick={() => dispatch(setNewMovieStep(2))}
+      >
         Siguiente
       </Button>
     </>
