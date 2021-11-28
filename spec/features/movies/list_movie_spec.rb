@@ -3,7 +3,7 @@ require 'date'
 
 describe "Check list of movies", type: :feature do
   before :each do
-    create(:movie, :today, name: "Dune")
+    create(:movie, :today)
     create(:movie, :tomorrow, name: "Once uppon a time in hollywood")
     visit '/'
   end
