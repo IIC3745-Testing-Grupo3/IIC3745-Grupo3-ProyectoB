@@ -11,9 +11,18 @@ const screeningsApi = baseApi.injectEndpoints({
         },
       }),
     }),
+    getOccupiedSpots: build.query({
+      query: ({ date, screening }) => ({
+        url: `/screenings/${screening}/bookings`,
+        params: {
+          date,
+        },
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export const { useGetOccupiedRoomsQuery } = screeningsApi;
+export const { useGetOccupiedRoomsQuery, useGetOccupiedSpotsQuery } =
+  screeningsApi;
