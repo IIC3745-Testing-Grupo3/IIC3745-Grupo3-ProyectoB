@@ -9,38 +9,38 @@ movies = Movie.create([
   {
     name: 'Encanto',
     poster: 'https://lumiere-a.akamaihd.net/v1/images/encanto_p_243_ster_29_23e974a4.jpeg',
-    start_date: '2021-11-27',
-    end_date: '2021-12-7',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 10),
   },
   {
     name: 'Eternals',
     poster: 'https://www.mundopeliculas.tv/wp-content/uploads/2019/08/eternals-logo.jpg',
-    start_date: '2021-11-27',
-    end_date: '2021-11-30',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 5),
   },
   {
     name: 'Ghostbusters: El legado',
     poster: 'https://www.dondeir.com/wp-content/uploads/2021/10/ghostbusters-el-legado-mira-el-nuevo-trailer-internacional.jpg',
-    start_date: '2021-11-27',
-    end_date: '2021-12-7',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 10),
   },
   {
     name: 'Venom: Carnage liberado',
     poster: 'https://mx.web.img3.acsta.net/pictures/21/08/31/16/11/0282026.jpg',
-    start_date: '2021-11-27',
-    end_date: '2021-11-30',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 5),
   },
   {
     name: 'Jack en la caja maldita',
     poster: 'https://elcomercio.pe/resizer/evVSJbKgqp0t_LuOhSG5zgLTx28=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/PN6E2HQMJFGPRMF7PQBGQM535A.png',
-    start_date: '2021-11-27',
-    end_date: '2021-12-7',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 10),
   },
   {
     name: 'Espíritus oscuros',
     poster: 'https://imagenes.gatotv.com/categorias/peliculas/posters/espiritus_oscuros.jpg',
-    start_date: '2021-11-27',
-    end_date: '2021-12-7',
+    start_date:  Date.today,
+    end_date: Date.today.advance(days: 10),
   },
 ])
 
@@ -165,11 +165,39 @@ Booking.create([
     |row| columns.map{
       |column| {
         booker: 'EvaleenHierofalco@harakirimail.com',
-        date: '2021-11-28',
+        date:  Date.today,
         row: row,
         column: column,
-        screening: screenings[13],
+        screening: screenings[14],
       }
     }
+  },
+  {
+    booker: 'EvaleenHierofalco@harakirimail.com',
+    date:  Date.today,
+    row: 'A',
+    column: 2,
+    screening: screenings[13],
+  },
+  {
+    booker: 'EvaleenHierofalco@harakirimail.com',
+    date:  Date.today,
+    row: 'A',
+    column: 3,
+    screening: screenings[13],
+  },
+  {
+    booker: 'EvaleenHierofalco@harakirimail.com',
+    date:  Date.today,
+    row: 'A',
+    column: 4,
+    screening: screenings[13],
+  },
+  {
+    booker: 'EvaleenHierofalco@harakirimail.com',
+    date:  Date.today,
+    row: 'B',
+    column: 5,
+    screening: screenings[13],
   }
 ])
