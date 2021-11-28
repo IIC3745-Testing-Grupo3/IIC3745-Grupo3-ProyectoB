@@ -11,8 +11,10 @@ class Api::MoviesController < ApplicationController
         "start_date <= '#{params[:date]}' and end_date >= '#{params[:date]}'"
       )
       render json: movies, :include => :screenings
-    else 
-      movies = Movie.includes(:screenings)
+    else
+      puts Date.today
+      movies = Movie.includes(:screenings).where('end_date >= ?', Date.today).all
+      puts movies
       render json: movies, :include => :screenings
     end
   end
