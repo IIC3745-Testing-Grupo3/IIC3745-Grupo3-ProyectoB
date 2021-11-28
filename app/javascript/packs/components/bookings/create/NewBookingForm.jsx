@@ -15,6 +15,7 @@ export default function NewBookingForm({ startDate, endDate, screenings }) {
   const dispatch = useDispatch();
   const newBookingData = useSelector((state) => state.bookings.newBookingData);
   const validationSchema = Yup.object().shape({
+    booker: Yup.string().email('Debe ser un email').required('Requerido'),
     date: Yup.date()
       .required('Requerido')
       .min(
@@ -30,6 +31,7 @@ export default function NewBookingForm({ startDate, endDate, screenings }) {
   return (
     <Formik
       initialValues={{
+        booker: newBookingData?.booker || '',
         date: newBookingData?.date || '',
         screening: newBookingData?.screening || '',
       }}
@@ -41,6 +43,20 @@ export default function NewBookingForm({ startDate, endDate, screenings }) {
     >
       {({ errors, touched, values, handleChange, handleBlur }) => (
         <Form>
+          <TextField
+            name="booker"
+            label="Email"
+            variant="outlined"
+            value={values.booker}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            autoFocus
+            autoComplete="off"
+            style={{ width: '100%' }}
+            helperText={errors.booker && touched.booker ? errors.booker : ''}
+            error={errors.booker && touched.booker}
+            sx={{ my: 2 }}
+          />
           <TextField
             name="date"
             label="Fecha de Reserva"

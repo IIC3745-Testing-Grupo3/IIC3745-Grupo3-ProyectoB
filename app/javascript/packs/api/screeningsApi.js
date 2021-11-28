@@ -2,6 +2,13 @@ import baseApi from './baseApi';
 
 const screeningsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    createBooking: build.mutation({
+      query: ({ body, screening }) => ({
+        url: `/screenings/${screening}/bookings/multiple`,
+        method: 'POST',
+        body: { ...body },
+      }),
+    }),
     getOccupiedRooms: build.query({
       query: ({ startDate, endDate }) => ({
         url: '/screenings/occupied',
@@ -23,6 +30,8 @@ const screeningsApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-// eslint-disable-next-line import/prefer-default-export
-export const { useGetOccupiedRoomsQuery, useGetOccupiedSpotsQuery } =
-  screeningsApi;
+export const {
+  useCreateBookingMutation,
+  useGetOccupiedRoomsQuery,
+  useGetOccupiedSpotsQuery,
+} = screeningsApi;

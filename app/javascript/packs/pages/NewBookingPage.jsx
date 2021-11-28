@@ -7,10 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import { useGetMovieByIdQuery } from '../api/moviesApi';
 import Loading from '../components/ui/Loading';
-// import NewMovieConfirmation from '../components/movies/create/NewMovieConfirmation';
+import NewBookingConfirmation from '../components/bookings/create/NewBookingConfirmation';
 import NewBookingForm from '../components/bookings/create/NewBookingForm';
 import NewBookingRoom from '../components/bookings/create/NewBookingRoom';
-// import NewMovieScreenings from '../components/movies/create/NewMovieScreenings';
 import NewBookingSteps from '../components/bookings/create/NewBookingSteps';
 import { resetState } from '../store/modules/bookings/slice';
 
@@ -35,7 +34,6 @@ export default function NewBookingPage() {
         </Link>
         <Typography color="text.primary">Nueva reserva</Typography>
       </Breadcrumbs>
-      {/* <Box component="img" src={data.poster} sx={{ width: 0.5 }} /> */}
       <Typography variant="h4">Nueva Reserva para {data.name}</Typography>
       <Box sx={{ width: 0.5, my: 4 }}>
         <NewBookingSteps />
@@ -48,7 +46,12 @@ export default function NewBookingPage() {
         />
       )}
       {currentStep === 1 && <NewBookingRoom />}
-      {/* {currentStep === 2 && <NewMovieConfirmation />} */}
+      {currentStep === 2 && (
+        <NewBookingConfirmation
+          movieName={data.name}
+          screenings={data.screenings}
+        />
+      )}
     </>
   );
 }
