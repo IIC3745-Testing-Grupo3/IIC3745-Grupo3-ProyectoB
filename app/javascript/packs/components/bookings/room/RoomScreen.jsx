@@ -1,19 +1,17 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 
 export default function RoomScreen() {
   return (
-    <Grid container item>
-      <Grid item xs={12}>
-        <Typography
-          align="center"
-          variant="h6"
-          style={{ color: 'white', backgroundColor: '#ef3c2d' }}
-        >
-          PANTALLA
-        </Typography>
-      </Grid>
-    </Grid>
+    <Box sx={{ width: 1 }}>
+      <Typography
+        align="center"
+        variant="h6"
+        sx={{ color: 'white', backgroundColor: 'error.main' }}
+      >
+        PANTALLA
+      </Typography>
+    </Box>
   );
 }

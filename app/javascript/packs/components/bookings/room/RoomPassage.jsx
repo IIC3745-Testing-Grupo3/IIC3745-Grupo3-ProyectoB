@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
@@ -12,29 +11,29 @@ export default function RoomPassage({ position }) {
     marginTopValue = '270';
   }
   return (
-    <Grid>
-      <Paper
-        sx={{ height: 1, width: 50, padding: 1 }}
+    <Paper
+      sx={{
+        height: 1,
+        width: 50,
+        padding: 1,
+        bgcolor: 'primary.dark',
+      }}
+    >
+      <Typography
+        variant="h6"
         style={{
-          backgroundColor: '#1368aa',
-          textAlign: 'center',
+          transform: `rotate(${rotationValue}deg)`,
+          marginTop: `${marginTopValue}%`,
+          color: 'white',
         }}
+        align="center"
       >
-        <Typography
-          variant="h6"
-          style={{
-            transform: `rotate(${rotationValue}deg)`,
-            marginTop: `${marginTopValue}%`,
-            color: 'white',
-          }}
-        >
-          Pasillo
-        </Typography>
-      </Paper>
-    </Grid>
+        Pasillo
+      </Typography>
+    </Paper>
   );
 }
 
 RoomPassage.propTypes = {
-  position: PropTypes.string.isRequired,
+  position: PropTypes.oneOf(['right', 'left']).isRequired,
 };

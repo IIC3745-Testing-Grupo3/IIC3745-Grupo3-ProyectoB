@@ -110,7 +110,7 @@ export default function NewBookingRoom() {
   }
 
   return (
-    <Box>
+    <>
       <Box
         sx={{
           display: 'flex',
@@ -119,7 +119,9 @@ export default function NewBookingRoom() {
           padding: '20px 10px',
         }}
       >
-        <RoomPassage position="left" />
+        <Grid>
+          <RoomPassage position="left" />
+        </Grid>
         <Grid
           container
           spacing={5}
@@ -154,9 +156,13 @@ export default function NewBookingRoom() {
               </Grid>
             ))}
           </Grid>
-          <RoomScreen />
+          <Grid item xs={12}>
+            <RoomScreen />
+          </Grid>
         </Grid>
-        <RoomPassage position="right" />
+        <Grid>
+          <RoomPassage position="right" />
+        </Grid>
       </Box>
       <Box sx={{ mt: 3 }}>
         <Button
@@ -174,6 +180,6 @@ export default function NewBookingRoom() {
           Siguiente
         </Button>
       </Box>
-    </Box>
+    </>
   );
 }
