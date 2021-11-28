@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -6,19 +6,57 @@ import Grid from '@mui/material/Grid';
 import RoomPassage from '../components/room/RoomPassage';
 import RoomScreen from '../components/room/RoomScreen';
 
+const rowNames = ['A', 'B', 'C', 'D'];
+
+const columns = Array.from({ length: 12 }, (_, i) => i + 1); // Cambiar
+
 export default function RoomPage() {
-  const rowNames = ['a', 'b', 'c', 'd'];
-  const chairsGrid = rowNames.map((rowName) => ({
-    row: [...Array(12)].map((x, i) => `${rowName}${i + 1}`),
-    value: rowName,
-  }));
+  const [selectedSpots, setSelectedSpots] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  useEffect(() => {
+    if (selectedSpots.length) {
+      setSelectedRow(selectedSpots[0].row);
+    } else {
+      setSelectedRow(null);
+    }
+  }, [selectedSpots]);
+
+  const rowAvailable = (row) => {
+    return selectedRow ? row === selectedRow : true;
+  };
+
+  const isSelected = (row, column) => {
+    return !!selectedSpots.find(
+      (spot) => spot.row === row && spot.column === column,
+    );
+  };
+
+  const addSpot = (row, column) => {
+    if (isSelected(row, column)) {
+      setSelectedSpots(
+        selectedSpots.filter(
+          (spot) => spot.row !== row || spot.column !== column,
+        ),
+      );
+    } else {
+      setSelectedSpots([...selectedSpots, { row, column }]);
+    }
+  };
+
+  const spotSelectionHandler = (row, column) => {
+    if (rowAvailable(row)) {
+      addSpot(row, column);
+    }
+  };
+
   return (
     <Box>
-      <div
-        style={{
+      <Box
+        sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          backgroundColor: '#9dcee2',
+          bgcolor: '#9dcee2',
           padding: '20px 10px',
         }}
       >
@@ -31,15 +69,26 @@ export default function RoomPage() {
           style={{ padding: '0px 30px 0 30px' }}
         >
           <Grid container item spacing={2}>
-            {chairsGrid.map((x) => (
-              <Grid container item spacing={1} key={x.value}>
-                {x.row.map((y) => (
-                  <Grid item xs={1} key={y}>
+            {rowNames.map((x) => (
+              <Grid container item spacing={1} key={x}>
+                {columns.map((spot) => (
+                  <Grid item xs={1} key={spot}>
                     <Paper
-                      sx={{ height: 1, width: 1, padding: 1 }}
+                      onClick={() => spotSelectionHandler(x, spot)}
+                      sx={{
+                        height: 1,
+                        width: 1,
+                        padding: 1,
+                        bgcolor:
+                          isSelected(x, spot) && rowAvailable(x)
+                            ? 'primary.main'
+                            : 'background.paper',
+                        opacity: rowAvailable(x) ? '100%' : '40%',
+                        cursor: rowAvailable(x) ? 'pointer' : 'not-allowed',
+                      }}
                       style={{ textAlign: 'center' }}
                     >
-                      <Typography variant="body2"> {y} </Typography>
+                      <Typography variant="body2">{`${x}${spot}`}</Typography>
                     </Paper>
                   </Grid>
                 ))}
@@ -49,7 +98,7 @@ export default function RoomPage() {
           <RoomScreen />
         </Grid>
         <RoomPassage position="right" />
-      </div>
+      </Box>
     </Box>
   );
 }
