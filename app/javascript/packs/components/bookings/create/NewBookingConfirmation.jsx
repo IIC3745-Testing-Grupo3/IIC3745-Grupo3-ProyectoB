@@ -10,7 +10,7 @@ export default function NewBookingConfirmation({ movieName, screenings }) {
   const dispatch = useDispatch();
   const { selectedSpots } = useSelector((state) => state.bookings.roomData);
 
-  const { date, screening } = useSelector(
+  const { date, screening, booker } = useSelector(
     (state) => state.bookings.newBookingData,
   );
 
@@ -24,11 +24,11 @@ export default function NewBookingConfirmation({ movieName, screenings }) {
 
   return (
     <Box>
-      <Typography variant="h5">Confirmar película</Typography>
+      <Typography variant="h5">Confirmar reserva</Typography>
       <Box sx={{ my: 2 }}>
         <Box>
           <Typography variant="h6" sx={{ display: 'inline' }}>
-            Nombre Película:
+            Título Película:
           </Typography>{' '}
           <Typography variant="subtitle" sx={{ display: 'inline' }}>
             {movieName}
@@ -57,6 +57,12 @@ export default function NewBookingConfirmation({ movieName, screenings }) {
             Puestos:
           </Typography>{' '}
           {selectedSpotsString}
+        </Box>
+        <Box>
+          <Typography variant="h6" sx={{ display: 'inline' }}>
+            Email de contacto:
+          </Typography>{' '}
+          {booker}
         </Box>
       </Box>
       <Button
