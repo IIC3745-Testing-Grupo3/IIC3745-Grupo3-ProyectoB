@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :movies, only: [:create, :index], shallow: true do
+    resources :movies, only: [:create, :index, :show], shallow: true do
       resources :screenings, only: [:index], shallow: true do
         resources :bookings, only: [:create, :index]
       end

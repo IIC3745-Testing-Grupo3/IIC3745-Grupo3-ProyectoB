@@ -17,8 +17,17 @@ const moviesApi = baseApi.injectEndpoints({
         },
       }),
     }),
+    getMovieById: build.query({
+      query: (id) => ({
+        url: `/movies/${id}`,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateMovieMutation, useGetMoviesQuery } = moviesApi;
+export const {
+  useCreateMovieMutation,
+  useGetMoviesQuery,
+  useGetMovieByIdQuery,
+} = moviesApi;
