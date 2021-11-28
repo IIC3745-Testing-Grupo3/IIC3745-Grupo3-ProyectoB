@@ -32,7 +32,7 @@ export default function NewMovieScreenings() {
   return (
     <>
       {schedules.map((schedule) => (
-        <Box key={schedule} sx={{ my: 3 }}>
+        <Box key={schedule} sx={{ my: 3 }} id={schedule}>
           <Typography variant="h5">{schedule}</Typography>
           <ToggleButtonGroup
             value={newMovieScreenings[schedule]}

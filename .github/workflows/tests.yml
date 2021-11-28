@@ -1,8 +1,8 @@
-name: ruby
+name: tests
 on: [pull_request]
 jobs:
-  tests:
-    name: tests
+  e2e:
+    name: e2e
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
@@ -44,4 +44,4 @@ jobs:
       - name: Setup db
         run: RAILS_ENV=test bundle exec rails db:migrate
       - name: Run tests
-        run: make tests
+        run: SELENIUM_DRIVER=selenium_headless bundle exec rspec
