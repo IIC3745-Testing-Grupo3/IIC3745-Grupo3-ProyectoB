@@ -2,9 +2,9 @@ class Api::BookingsController < ApplicationController
   def create
     screening = Screening.find(params[:screening_id])
     # Validate date
-    if not DateTime.parse(params[:date]).between?(
+    if (not DateTime.parse(params[:date]).between?(
       screening.movie.start_date, screening.movie.end_date
-    )
+    )) || DateTime.parse(params[:date]) < Date.today
       body = {:status => 400, :error => "Invalid date"}
       return render :json => body, :status => :bad_request
     end
