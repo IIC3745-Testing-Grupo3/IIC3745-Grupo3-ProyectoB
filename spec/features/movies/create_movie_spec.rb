@@ -31,7 +31,7 @@ describe "Create movie", type: :feature do
     expect(page).to have_content 'Confirmar película'
   end
 
-  it "fills the second tab successfully" do
+  it "fills the third tab successfully" do
     fill_first_tab
     fill_second_tab
     click_button('Confirmar')
