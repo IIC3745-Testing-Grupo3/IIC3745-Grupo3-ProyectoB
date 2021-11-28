@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'date'
 
 describe "Create movie", type: :feature do
   before :each do
@@ -8,8 +9,8 @@ describe "Create movie", type: :feature do
   it "fills the first tab successfully" do
     visit '/movies/new'
     fill_in('name', with: 'Kimetsu no Yaiba: Mugen Train')
-    fill_in('startDate', with: '2021-11-27')
-    fill_in('endDate', with: '2021-11-28')
+    fill_in('startDate', with: Date.today.to_s)
+    fill_in('endDate', with: (Date.today + 1).to_s)
     fill_in('poster', with: 'https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2021/05/demon-slayer-mugen-train-imax-4dx-poster.jpg?resize=1280%2C1829&quality=80&ssl=1')
     click_button('Siguiente')
     expect(page).to have_content 'Matiné'
