@@ -5,7 +5,7 @@ describe 'Check list of movies', type: :feature do
   before :each do
     create(:movie, :today)
     create(:movie, :tomorrow, name: 'Once uppon a time in hollywood')
-    movie = create(:movie, :tendays, name: 'Shrek')
+    movie = create(:movie, :eleven_days, name: 'Shrek')
     create(:screening, :morning, movie: movie)
     create(:screening, :afternoon, movie: movie)
     create(:screening, :night, movie: movie)

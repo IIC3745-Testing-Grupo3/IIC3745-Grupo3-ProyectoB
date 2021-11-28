@@ -15,7 +15,7 @@ FactoryBot.define do
       start_date { Date.today.advance(days: 1) }
     end
 
-    trait :tendays do
+    trait :eleven_days do
       start_date { Date.today.advance(days: 11) }
     end
   end
