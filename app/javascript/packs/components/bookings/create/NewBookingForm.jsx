@@ -18,8 +18,12 @@ export default function NewBookingForm({ startDate, endDate, screenings }) {
     date: Yup.date()
       .required('Requerido')
       .min(
-        new Date(startDate),
-        `La película está disponible desde ${startDate}`,
+        new Date(Math.max(Date.parse(startDate), Date.now() - 86400000)),
+        `La película está disponible desde ${
+          Date.parse(startDate) > Date.now()
+            ? startDate
+            : new Date().toISOString().slice(0, 10)
+        }`,
       )
       .max(
         new Date(Date.parse(endDate) + 86400000),
