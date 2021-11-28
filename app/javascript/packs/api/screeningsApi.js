@@ -4,7 +4,7 @@ const screeningsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createBooking: build.mutation({
       query: ({ body, screening }) => ({
-        url: `/screenings/${screening}/bookings`,
+        url: `/screenings/${screening}/bookings/multiple`,
         method: 'POST',
         body: { ...body },
       }),

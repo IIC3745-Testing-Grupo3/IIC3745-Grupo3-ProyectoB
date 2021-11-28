@@ -5,12 +5,15 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNewBookingStep } from '../../../store/modules/bookings/slice';
+import { useCreateBookingMutation } from '../../../api/screeningsApi';
+import Loading from '../../ui/Loading';
+import NewBookingSuccessDialog from './NewBookingSuccessDialog';
 
 export default function NewBookingConfirmation({ movieName, screenings }) {
   const dispatch = useDispatch();
   const { selectedSpots } = useSelector((state) => state.bookings.roomData);
 
-  const { date, screening } = useSelector(
+  const { date, screening, booker } = useSelector(
     (state) => state.bookings.newBookingData,
   );
 
@@ -22,8 +25,19 @@ export default function NewBookingConfirmation({ movieName, screenings }) {
     .map((spot) => `${spot.row}${spot.column}`)
     .join(', ');
 
+  const [createBooking, { data, isLoading }] = useCreateBookingMutation();
+
+  const submitBooking = () => {
+    createBooking({
+      body: { booker, date, seats: selectedSpots },
+      screening,
+    });
+  };
+
   return (
     <Box>
+      {isLoading && <Loading />}
+      <NewBookingSuccessDialog open={Boolean(data)} />
       <Typography variant="h5">Confirmar reserva</Typography>
       <Box sx={{ my: 2 }}>
         <Box>
@@ -66,7 +80,9 @@ export default function NewBookingConfirmation({ movieName, screenings }) {
       >
         Volver
       </Button>
-      <Button variant="contained">Confirmar</Button>
+      <Button variant="contained" onClick={submitBooking}>
+        Confirmar
+      </Button>
     </Box>
   );
 }
