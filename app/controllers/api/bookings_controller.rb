@@ -33,6 +33,46 @@ class Api::BookingsController < ApplicationController
     ).all
     render json: bookings
   end
+  
+  def multiple_create
+    screening = Screening.find(params[:screening_id])
+    # Validate date
+    if not DateTime.parse(params[:date]).between?(
+      screening.movie.start_date, screening.movie.end_date
+    )
+      body = {:status => 400, :error => "Invalid date"}
+      return render :json => body, :status => :bad_request
+    end
+
+    # No seats repeated
+    params[:seats].each do |book|
+      booking = Booking.find_by(
+        screening: screening, row: book[:row], column: book[:column],
+        date: DateTime.parse(params[:date])
+      )
+      if booking
+        body = {:status => 400, :error => "Some seats are already taken"}
+        return render :json => body, :status => :bad_request
+      end
+    end
+
+    # Save bookings
+    bookings = []
+    params[:seats].each do |book|
+      booking = Booking.find_by(
+        screening: screening, row: book[:row], column: book[:column],
+        date: DateTime.parse(params[:date])
+      )
+      booking = screening.bookings.create(
+        :booker => params[:booker],
+        :date => params[:date],
+        :row => book[:row],
+        :column => book[:column]
+      )
+      bookings << booking
+    end
+    render json: bookings
+  end
 
   private
 
