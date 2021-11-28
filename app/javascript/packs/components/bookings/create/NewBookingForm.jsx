@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import {
   setNewBookingData,

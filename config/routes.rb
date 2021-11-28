@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       end
     end
     get '/screenings/occupied', to: 'screenings#occupied'
+    post '/screenings/:screening_id/bookings/multiple', to: 'bookings#multiple_create'
   end
 
   get '/', to: 'pages#index'
