@@ -13,3 +13,4 @@ RSpec.configure do |config|
 end
 
 Capybara.default_driver = ENV['SELENIUM_DRIVER'] ? ENV['SELENIUM_DRIVER'].to_sym : :selenium
+Capybara.default_max_wait_time = 10
