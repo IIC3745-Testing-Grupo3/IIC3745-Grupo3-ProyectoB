@@ -12,9 +12,7 @@ class Api::MoviesController < ApplicationController
       )
       render json: movies, :include => :screenings
     else
-      puts Date.today
       movies = Movie.includes(:screenings).where('end_date >= ?', Date.today).all
-      puts movies
       render json: movies, :include => :screenings
     end
   end
