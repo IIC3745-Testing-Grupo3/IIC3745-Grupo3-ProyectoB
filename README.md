@@ -1,10 +1,13 @@
 # Proyecto B
 
+**Production URL:** https://testing-proyecto-b.herokuapp.com/
+
 1. [Setup](#setup)
 2. [Run the app](#run-the-app)
 3. [The magical Makefile](#the-magical-makefile)
-4. [How to contribute](#how-to-contribute)
-5. [Branch naming](#branch-naming)
+4. [Using different selenium drivers with capybara](#using-different-selenium-drivers-with-capybara)
+5. [How to contribute](#how-to-contribute)
+6. [Branch naming](#branch-naming)
 
 ## Prerequisites
 
@@ -62,6 +65,13 @@ All the useful commands are centralized in a Makefile:
 make tests # runs the tests
 make eslint # checks for eslint offences
 make eslint! # fixes eslint offences
+```
+
+## Using different selenium drivers with capybara
+
+By default, the tests run with firefox, but if you want to use a different driver, you can use the `SELENIUM_DRIVER` variable:
+```bash
+SELENIUM_DRIVER=selenium_headless bundle exec rspec # :selenium_chrome and :selenium_chrome_headless are also valid values
 ```
 
 ## How to contribute
