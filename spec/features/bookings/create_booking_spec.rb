@@ -46,4 +46,3 @@ describe 'Create booking', type: :feature do
     expect(page).to have_content 'Shrek'
   end
 end
-
