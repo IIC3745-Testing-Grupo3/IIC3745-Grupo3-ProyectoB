@@ -77,6 +77,7 @@ export default function NewBookingForm({ startDate, endDate, screenings }) {
             sx={{ my: 2 }}
           />
           <TextField
+            id="screening"
             name="screening"
             label="Función"
             select
