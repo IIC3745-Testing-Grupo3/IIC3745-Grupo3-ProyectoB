@@ -1,5 +1,6 @@
 require 'capybara/rspec'
 require_relative './support/movies_helper'
+require_relative './support/bookings_helper'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -10,6 +11,7 @@ RSpec.configure do |config|
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.include MoviesHelper, :type => :feature
+  config.include BookingsHelper, :type => :feature
 end
 
 Capybara.default_driver = ENV['SELENIUM_DRIVER'] ? ENV['SELENIUM_DRIVER'].to_sym : :selenium

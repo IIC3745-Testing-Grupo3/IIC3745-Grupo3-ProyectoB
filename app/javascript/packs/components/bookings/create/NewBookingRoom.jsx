@@ -136,6 +136,7 @@ export default function NewBookingRoom() {
                   <Grid item xs={1} key={column}>
                     <Paper
                       onClick={() => spotSelectionHandler(row, column)}
+                      id={`${row}${column}`}
                       sx={{
                         height: 1,
                         width: 1,
